@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import NavBar from "@/components/general/Navbar";
+import { ModalProvider } from "@/components/providers/ModalProviders";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={font.className}>
           <NavBar />
+          <ModalProvider/>
           {children}
         </body>
       </html>
