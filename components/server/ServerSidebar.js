@@ -110,6 +110,7 @@ const ServerSidebar = async ({ serverId }) => {
                   channel={board}
                   role={role}
                   server={server}
+                  name={profile.name}
                 />
               ))}
             </div>
