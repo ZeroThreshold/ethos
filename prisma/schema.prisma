@@ -77,6 +77,8 @@ enum ChannelType {
   TEXT
   VOICE
   WHITEBOARD
+  CODE
+  GPT
 }
 
 model Channel {
@@ -117,4 +119,15 @@ model Message {
 
   @@index([channelId])
   @@index([memberId])
+}
+
+model GPT {
+  idx String @id @default(uuid())
+  serverId String
+  channelId String
+
+  profileId String
+
+  question String @db.Text
+  answer String @db.Text
 }

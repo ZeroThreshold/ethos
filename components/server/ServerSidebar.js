@@ -59,6 +59,9 @@ const ServerSidebar = async ({ serverId }) => {
   const whiteBoardChannels = server?.channels.filter(
     (channel) => channel.type === "WHITEBOARD"
   );
+  const codeBoard = server?.channels.filter(
+    (channel) => channel.type === "CODE"
+  );
   const members = server?.members.filter(
     (member) => member.profileId !== profile.id
   );

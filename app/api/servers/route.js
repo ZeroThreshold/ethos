@@ -27,9 +27,24 @@ export async function POST(req) {
               profileId: profile.id,
             },
             {
+              name: "voice",
+              profileId: profile.id,
+              type: "VOICE",
+            },
+            {
               name: "g-whiteboard",
               profileId: profile.id,
               type: "WHITEBOARD",
+            },
+            {
+              name: "editor",
+              profileId: profile.id,
+              type: "CODE",
+            },
+            {
+              name: "AI1",
+              profileId: profile.id,
+              type: "GPT",
             },
           ],
         },
