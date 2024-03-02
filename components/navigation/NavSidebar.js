@@ -2,14 +2,14 @@ import { redirect } from "next/navigation";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { initProfile } from "@/lib/init-profile";
+import { currentProfile } from "@/lib/currentProfile";
 import { db } from "@/lib/database";
 
 import { NavigationAction } from "./NavAction";
 import { NavigationItem } from "./NavItem";
 
 export const NavigationSidebar = async () => {
-  const profile = await initProfile();
+  const profile = await currentProfile();
 
   if (!profile) {
     return redirect("/");
