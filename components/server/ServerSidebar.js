@@ -4,7 +4,7 @@ import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { db } from "@/lib/database";
-import { currentProfile } from "@/lib/currentProfile" 
+import { currentProfile } from "@/lib/currentProfile";
 import ServerHeader from "./ServerHeader";
 import { ServerSection } from "./ServerSection";
 import { ServerChannel } from "./ServerChannel";
@@ -22,6 +22,7 @@ const roleIconMap = {
 };
 
 const ServerSidebar = async ({ serverId }) => {
+  const profile = currentProfile();
 
   if (!profile) {
     return redirectToSignIn();
