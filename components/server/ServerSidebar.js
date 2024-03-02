@@ -122,7 +122,7 @@ const ServerSidebar = async ({ serverId }) => {
               sectionType="channels"
               channelType={"VOICE"}
               role={role}
-              label="Colab Channels"
+              label="Media Channel"
             />
             <div className="space-y-[2px]">
               {audioChannels.map((channel) => (
