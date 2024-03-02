@@ -1,7 +1,7 @@
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 
-const GradientText = ({ text, gradient, classes }) => {
+export const GradientText = ({ text, gradient, classes }) => {
   return (
     <span
       style={{
