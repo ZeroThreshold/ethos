@@ -45,14 +45,6 @@ export const ChatItem = ({
   const params = useParams();
   const router = useRouter();
 
-  const onMemberClick = () => {
-    if (member.id === currentMember.id) {
-      return;
-    }
-
-    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
-  };
-
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape" || event.keyCode === 27) {
@@ -109,19 +101,13 @@ export const ChatItem = ({
   return (
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
       <div className="group flex gap-x-2 items-start w-full">
-        <div
-          onClick={onMemberClick}
-          className="cursor-pointer hover:drop-shadow-md transition"
-        >
+        <div className="cursor-pointer hover:drop-shadow-md transition">
           <UserAvatar src={member.profile.imageUrl} />
         </div>
         <div className="flex flex-col w-full">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
-              <p
-                onClick={onMemberClick}
-                className="font-semibold text-sm hover:underline cursor-pointer"
-              >
+              <p className="font-semibold text-sm hover:underline cursor-pointer">
                 {member.profile.name}
               </p>
               <ActionTooltip label={member.role}>
@@ -146,19 +132,6 @@ export const ChatItem = ({
                 className="object-cover"
               />
             </a>
-          )}
-          {isPDF && (
-            <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
-              <FileIcon className="h-10 w-10 fill-indigo-200 stroke-indigo-400" />
-              <a
-                href={fileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-2 text-sm text-indigo-500 dark:text-indigo-400 hover:underline"
-              >
-                PDF File
-              </a>
-            </div>
           )}
           {!fileUrl && !isEditing && (
             <p
@@ -224,7 +197,7 @@ export const ChatItem = ({
           <ActionTooltip label="Delete">
             <Trash
               onClick={() =>
-                onOpen("deleteMessage", {
+                onOpen("deleteMessageModal", {
                   apiUrl: `${socketUrl}/${id}`,
                   query: socketQuery,
                 })
