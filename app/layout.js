@@ -4,6 +4,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/components/providers/ModalProviders";
 import NavBar from "@/components/general/NavBar";
+import { SocketProvider } from "@/components/providers/SocketProvider";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -17,9 +19,11 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={font.className}>
-          <NavBar />
-          <ModalProvider />
-          {children}
+          <SocketProvider>
+            <NavBar />
+            <ModalProvider />
+            <QueryProvider>{children}</QueryProvider>
+          </SocketProvider>
         </body>
       </html>
     </ClerkProvider>
