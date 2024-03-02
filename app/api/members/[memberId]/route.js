@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
-import { initProfile } from "@/lib/init-profile";
+import { currentProfile } from "@/lib/currentProfile";
 import { db } from "@/lib/database";
 
 export async function DELETE(req, { params }) {
   try {
-    const profile = await initProfile();
+    const profile = await currentProfile();
     const { searchParams } = new URL(req.url);
 
     const serverId = searchParams.get("serverId");
@@ -58,7 +58,7 @@ export async function DELETE(req, { params }) {
 
 export async function PATCH(req, { params }) {
   try {
-    const profile = await initProfile();
+    const profile = await currentProfile();
     const { searchParams } = new URL(req.url);
     const { role } = await req.json();
 

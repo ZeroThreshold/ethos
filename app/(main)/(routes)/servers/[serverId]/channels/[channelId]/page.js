@@ -3,6 +3,10 @@ import { redirect } from "next/navigation";
 
 import { currentProfile } from "@/lib/currentProfile";
 import { ChatHeader } from "@/components/chat/ChatHeader";
+
+import { ChatInput } from "@/components/chat/ChatInput";
+import { ChatMessages } from "@/components/chat/ChatMessages";
+
 import { db } from "@/lib/database";
 
 const ChannelIdPage = async ({ params }) => {
@@ -36,6 +40,33 @@ const ChannelIdPage = async ({ params }) => {
         serverId={channel.serverId}
         type="channel"
       />
+      {channel.type === "TEXT" && (
+        <>
+          <ChatMessages
+            member={member}
+            name={channel.name}
+            chatId={channel.id}
+            type="channel"
+            apiUrl="/api/messages"
+            socketUrl="/api/socket/messages"
+            socketQuery={{
+              channelId: channel.id,
+              serverId: channel.serverId,
+            }}
+            paramKey="channelId"
+            paramValue={channel.id}
+          />
+          <ChatInput
+            name={channel.name}
+            type="channel"
+            apiUrl="/api/socket/messages"
+            query={{
+              channelId: channel.id,
+              serverId: channel.serverId,
+            }}
+          />
+        </>
+      )}
     </div>
   );
 };

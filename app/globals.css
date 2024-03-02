@@ -70,6 +70,10 @@ body,
     --input: 12 6.5% 15.1%;
     --ring: 24 5.7% 82.9%;
   }
+
+  .h90v {
+    height: calc(100% - 70px);
+  }
 }
 
 @layer base {

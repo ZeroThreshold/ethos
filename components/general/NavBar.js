@@ -21,7 +21,7 @@ const NavBar = () => {
     <div className="w-full flex justify-between py-4 px-6 border-b shadow-sm">
       <Link href={`/`}>
         <GradientText
-          text="ColabCode"
+          text="ETHOS"
           gradient="-webkit-linear-gradient(45deg, #338cf5, #4fd1c5)"
           classes="text-3xl font-bold"
         />
