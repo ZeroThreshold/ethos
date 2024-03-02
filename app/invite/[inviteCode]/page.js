@@ -2,10 +2,11 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/database";
-import { currentProfile } from "@/lib/currentProfile";
+import { initProfile } from "@/lib/init-profile";
 
 const InviteCodePage = async ({ params }) => {
-  const profile = currentProfile();
+  const profile = await initProfile();
+
   if (!profile) {
     return redirectToSignIn();
   }

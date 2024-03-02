@@ -1,12 +1,12 @@
 import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-import { initProfile } from "@/lib/init-profile";
+import { currentProfile } from "@/lib/currentProfile";
 import { db } from "@/lib/database";
 import ServerSidebar from "@/components/server/ServerSidebar";
 
 const ServerIdLayout = async ({ children, params }) => {
-  const profile = await initProfile();
+  const profile = await currentProfile();
   if (!profile) {
     return redirectToSignIn();
   }

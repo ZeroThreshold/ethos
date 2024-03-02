@@ -2,13 +2,13 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import NavBar from "@/components/general/Navbar";
 import { ModalProvider } from "@/components/providers/ModalProviders";
+import NavBar from "@/components/general/NavBar";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Ethos",
+  title: "ethos",
   description: "A platform for colab learning",
 };
 
@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className={font.className}>
           <NavBar />
-          <ModalProvider/>
+          <ModalProvider />
           {children}
         </body>
       </html>
