@@ -7,6 +7,8 @@ import { ChatHeader } from "@/components/chat/ChatHeader";
 import { ChatInput } from "@/components/chat/ChatInput";
 import { ChatMessages } from "@/components/chat/ChatMessages";
 
+import { MediaRoom } from "@/components/MediaRoom";
+
 import { db } from "@/lib/database";
 
 const ChannelIdPage = async ({ params }) => {
@@ -66,6 +68,9 @@ const ChannelIdPage = async ({ params }) => {
             }}
           />
         </>
+      )}
+      {channel.type === "VOICE" && (
+        <MediaRoom chatId={channel.id} video={false} audio={true} />
       )}
     </div>
   );

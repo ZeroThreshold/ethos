@@ -13,7 +13,7 @@ const iconMap = {
   ["WHITEBOARD"]: Presentation,
 };
 
-export const ServerWhiteChannel = ({ channel, server, role }) => {
+export const ServerWhiteChannel = ({ channel, server, role, name }) => {
   const { onOpen } = useModelStore();
   const params = useParams();
   const router = useRouter();
@@ -21,7 +21,9 @@ export const ServerWhiteChannel = ({ channel, server, role }) => {
   const Icon = iconMap[channel.type];
 
   const onClick = () => {
-    router.push(`/servers/${params?.serverId}/whiteboard/${channel.id}`);
+    router.push(
+      `/servers/${params?.serverId}/whiteboard/${channel.id}_${name}`
+    );
   };
 
   const onAction = (e, action) => {
