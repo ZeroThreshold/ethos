@@ -10,6 +10,7 @@ import ServerHeader from "./ServerHeader";
 import { ServerSection } from "./ServerSection";
 import { ServerChannel } from "./ServerChannel";
 import { ServerMember } from "./ServerMember";
+import { ServerWhiteChannel } from "./ServerWhiteBoardChannel";
 
 const iconMap = {
   ["TEXT"]: <Boxes className="mr-2 h-4 w-4" />,
@@ -55,6 +56,9 @@ const ServerSidebar = async ({ serverId }) => {
   const audioChannels = server?.channels.filter(
     (channel) => channel.type === "VOICE"
   );
+  const whiteBoardChannels = server?.channels.filter(
+    (channel) => channel.type === "WHITEBOARD"
+  );
   const members = server?.members.filter(
     (member) => member.profileId !== profile.id
   );
@@ -84,6 +88,26 @@ const ServerSidebar = async ({ serverId }) => {
                 <ServerChannel
                   key={channel.id}
                   channel={channel}
+                  role={role}
+                  server={server}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+        {!!whiteBoardChannels?.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectionType="channels"
+              channelType={"WHITEBOARD"}
+              role={role}
+              label="Whiteboard"
+            />
+            <div className="space-y-[2px]">
+              {whiteBoardChannels.map((board) => (
+                <ServerWhiteChannel
+                  key={board.id}
+                  channel={board}
                   role={role}
                   server={server}
                 />

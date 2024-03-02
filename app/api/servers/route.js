@@ -21,10 +21,17 @@ export async function POST(req) {
         inviteCode: uuidv4(),
         imageUrl: "https://picsum.photos/200",
         channels: {
-          create: {
-            name: "general",
-            profileId: profile.id,
-          },
+          create: [
+            {
+              name: "general",
+              profileId: profile.id,
+            },
+            {
+              name: "g-whiteboard",
+              profileId: profile.id,
+              type: "WHITEBOARD",
+            },
+          ],
         },
         members: {
           create: {
