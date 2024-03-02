@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, Hash, Lock, Mic, Trash } from "lucide-react";
+import { Edit, Boxes, Lock, Mic, Trash } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -8,7 +8,7 @@ import { ActionTooltip } from "../ActionToolTip";
 import { useModelStore } from "@/hooks/useModelStore";
 
 const iconMap = {
-  ["TEXT"]: Hash,
+  ["TEXT"]: Boxes,
   ["VOICE"]: Mic,
 };
 

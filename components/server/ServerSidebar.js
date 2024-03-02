@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { Hash, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
+import { Boxes, Mic, ShieldAlert, ShieldCheck, Video } from "lucide-react";
 
 import { ScrollArea } from "../ui/scroll-area";
 import { redirectToSignIn } from "@clerk/nextjs";
@@ -12,7 +12,7 @@ import { ServerChannel } from "./ServerChannel";
 import { ServerMember } from "./ServerMember";
 
 const iconMap = {
-  ["TEXT"]: <Hash className="mr-2 h-4 w-4" />,
+  ["TEXT"]: <Boxes className="mr-2 h-4 w-4" />,
   ["VOICE"]: <Mic className="mr-2 h-4 w-4" />,
 };
 
@@ -77,7 +77,7 @@ const ServerSidebar = async ({ serverId }) => {
               sectionType="channels"
               channelType={"TEXT"}
               role={role}
-              label="Text Channels"
+              label="Threads"
             />
             <div className="space-y-[2px]">
               {textChannels.map((channel) => (
