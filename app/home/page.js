@@ -1,6 +1,7 @@
 import React from "react";
 import { GradientText } from "@/components/general/NavBar";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroPage = () => {
   return (
@@ -22,8 +23,8 @@ const HeroPage = () => {
           </p>
         </div>
         <div className="mt-8 gap-3 flex justify-center">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 py-3 px-4 dark:focus:ring-offset-gray-800"
           >
             JUMP IN
@@ -41,7 +42,7 @@ const HeroPage = () => {
                 strokeLinecap="round"
               />
             </svg>
-          </a>
+          </Link>
         </div>
         <section className="mt-16">
           <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-gray-200 mb-8">
