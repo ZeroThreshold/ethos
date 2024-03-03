@@ -23,6 +23,13 @@ export const ServerChannel = ({ channel, server, role }) => {
     router.push(`/servers/${params?.serverId}/channels/${channel.id}`);
   };
 
+  const checkTr =
+    channel.name === "general" ||
+    channel.name === "g-whiteboard" ||
+    channel.name === "AI1" ||
+    channel.name === "editor" ||
+    channel.name === "voice";
+
   const onAction = (e, action) => {
     e.stopPropagation();
     onOpen(action, { channel, server });
@@ -46,7 +53,7 @@ export const ServerChannel = ({ channel, server, role }) => {
       >
         {channel.name}
       </p>
-      {channel.name !== "general" && role !== "USER" && (
+      {checkTr && role !== "USER" && (
         <div className="ml-auto flex items-center gap-x-2">
           <ActionTooltip label="Delete">
             <Trash
@@ -56,7 +63,7 @@ export const ServerChannel = ({ channel, server, role }) => {
           </ActionTooltip>
         </div>
       )}
-      {channel.name === "general" && (
+      {checkTr && (
         <Lock className="ml-auto w-4 h-4 text-zinc-500 dark:text-zinc-400" />
       )}
     </button>
