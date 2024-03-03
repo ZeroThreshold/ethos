@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { Title } from "@radix-ui/react-dialog";
 import { Input } from "@/components/ui/input";
+import { UserSearch } from "lucide-react";
+import { BookHeart } from "lucide-react";
 const ListServersMain = ({ servers, allservers, profile }) => {
   const [modelOpen, setModelOpen] = useState(false);
   let username = profile.name.split(" ")[0];
@@ -51,9 +53,9 @@ const ListServersMain = ({ servers, allservers, profile }) => {
             )}
             {servers.map((server) => (
               <Link href={`/servers/${server.id}`} key={server.id}>
-                <div className="flex items-center gap-4 p-4 rounded-lg bg-gray-100 dark:bg-gray-800">
+                <div className="flex items-center gap-4 p-4 rounded-lg bg-white dark:bg-gray-800 shadow-md hover:shadow-lg cursor-pointer transition duration-300 transform hover:scale-105">
                   <img
-                    alt="Avatar"
+                    alt="Server Image"
                     className="rounded-full"
                     height="40"
                     src={server.imageUrl}
@@ -63,17 +65,28 @@ const ListServersMain = ({ servers, allservers, profile }) => {
                     }}
                     width="40"
                   />
-                  <div className="flex-1 grid gap-1 text-xl">
-                    <h2 className="font-semibold text-lg">
-                      {server.name.replace(/\b\w/g, (c) => c.toUpperCase())}
-                    </h2>
-                    <Separator />
-                    <h2 className="font text-xs">{server.category}</h2>
+                  <div className="flex-1">
+                    <div className="grid gap-1">
+                      <h2 className="font-semibold text-lg text-gray-800 dark:text-gray-200">
+                        {server.name.replace(/\b\w/g, (c) => c.toUpperCase())}
+                      </h2>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {server.category}
+                      </p>
+                    </div>
                   </div>
-                  <Button size="sm">View</Button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      className=" bg-black hover:bg-gray-900 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      onClick={() => setModelOpen(true)}
+                    >
+                      Jump In
+                    </button>
+                  </div>
                 </div>
               </Link>
             ))}
+
             <Separator />
 
             <h2 className="text-3xl font-bold">Explore Communities</h2>
@@ -87,7 +100,7 @@ const ListServersMain = ({ servers, allservers, profile }) => {
                 onChange={(e) => setSearchInput(e.target.value)}
               />
               <Button className="px-3 py-2" onClick={handleSearch}>
-                Search
+                <UserSearch className="h-7 w-7 my-4" />
               </Button>
             </div>
             {filteredServers.map((server) => (
@@ -111,17 +124,29 @@ const ListServersMain = ({ servers, allservers, profile }) => {
                     <span className="absolute bottom-0 right-0 inline-block w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
                   </div>
                   <div className="flex flex-col ml-4">
-                    <h2 className="font-semibold text-lg text-gray-800 dark:text-gray-200">
-                      {server.name.replace(/\b\w/g, (c) => c.toUpperCase())}
-                    </h2>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {server.description}
-                    </p>
-                    <span className="text-gray-500 text-sm mt-1">
-                      {server.category}
-                    </span>
+                    <div className="border-b border-gray-300 pb-2 mb-2">
+                      <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200">
+                        {server.name.replace(/\b\w/g, (c) => c.toUpperCase())}
+                      </h2>
+                      <div className="flex items-center">
+                        <BookHeart className="w-6 h-6 mr-2" />
+
+                        <p className="text-lg text-gray-600 dark:text-gray-400">
+                          <span>{server.description}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-gray-500 text-sm mt-1 mr-2">
+                        Category:
+                      </span>
+                      <span className="text-gray-700 dark:text-gray-400 font-semibold">
+                        {server.category}
+                      </span>
+                    </div>
                   </div>
-                  <button className="ml-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+                  <button className="ml-auto bg-black hover:bg-gray-900 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
                     Join
                   </button>
                 </div>

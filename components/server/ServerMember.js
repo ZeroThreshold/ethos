@@ -1,6 +1,6 @@
 "use client";
 
-import { ShieldAlert, ShieldCheck } from "lucide-react";
+import { ShieldPlus, ShieldCheck } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -9,7 +9,7 @@ import { UserAvatar } from "../UserAvatar";
 const roleIconMap = {
   ["USER"]: null,
   ["MOD"]: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
-  ["ADMIN"]: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />,
+  ["ADMIN"]: <ShieldPlus className="h-4 w-4 ml-2 text-rose-500" />,
 };
 
 export const ServerMember = ({ member, server }) => {
