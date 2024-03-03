@@ -5,9 +5,6 @@ import { currentProfile } from "@/lib/currentProfile";
 import { ChatHeader } from "@/components/chat/ChatHeader";
 
 import { ChatInput } from "@/components/chat/ChatInput";
-import { ChatMessages } from "@/components/chat/ChatMessages";
-
-import { MediaRoom } from "@/components/MediaRoom";
 
 import { db } from "@/lib/database";
 
@@ -31,6 +28,18 @@ const AIIdPage = async ({ params }) => {
     },
   });
 
+  const aimessages = await db.GPT.findMany({
+    where: {
+      channelId: params.aiId,
+      serverId: params.serverId,
+    },
+    orderBy: [
+      {
+        idx: "desc",
+      },
+    ],
+  });
+
   if (!channel || !member) {
     redirect("/");
   }
@@ -41,6 +50,7 @@ const AIIdPage = async ({ params }) => {
         serverId={channel.serverId}
         type="channel"
       />
+
       {channel.type === "GPT" && (
         <ChatInput
           name={channel.name}
@@ -52,6 +62,21 @@ const AIIdPage = async ({ params }) => {
           }}
         />
       )}
+      {aimessages.map((message) => {
+        return (
+          <div className="w-full px-4 py-2">
+            <div className="bg-neutral-200 p-4 rounded">
+              <div>Question: {message.question}</div>
+              <div
+                className={message.answer ? "text-green-700" : "text-gray-500"}
+              >
+                Answer:{" "}
+                {message.answer ? message.answer : "Generating Response....."}
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
