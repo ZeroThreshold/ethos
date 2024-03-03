@@ -1,6 +1,14 @@
 "use client";
 
-import { Presentation, Boxes, Lock, Mic, Trash } from "lucide-react";
+import {
+  Presentation,
+  Boxes,
+  Lock,
+  Mic,
+  Trash,
+  Code,
+  GitPullRequest,
+} from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -11,6 +19,8 @@ const iconMap = {
   ["TEXT"]: Boxes,
   ["VOICE"]: Mic,
   ["WHITEBOARD"]: Presentation,
+  ["CODE"]: Code,
+  ["GPT"]: GitPullRequest,
 };
 
 export const ServerWhiteChannel = ({ channel, server, role, name }) => {
@@ -21,10 +31,23 @@ export const ServerWhiteChannel = ({ channel, server, role, name }) => {
   const Icon = iconMap[channel.type];
 
   const onClick = () => {
-    router.push(
-      `/servers/${params?.serverId}/whiteboard/${channel.id}_${name}`
-    );
+    if (role === "WHITEBOARD") {
+      router.push(
+        `/servers/${params?.serverId}/whiteboard/${channel.id}_${name}`
+      );
+    }
+    if (role === "CODE") {
+      router.push(`/servers/${params?.serverId}/editor/${channel.id}_${name}`);
+    }
+    if (role === "GPT") {
+      router.push(`/servers/${params?.serverId}/ai/${channel.id}`);
+    }
   };
+
+  const checkTr =
+    channel.name === "g-whiteboard" ||
+    channel.name === "AI1" ||
+    channel.name === "editor";
 
   const onAction = (e, action) => {
     e.stopPropagation();
@@ -49,7 +72,7 @@ export const ServerWhiteChannel = ({ channel, server, role, name }) => {
       >
         {channel.name}
       </p>
-      {channel.name !== "g-whiteboard" && (
+      {checkTr && (
         <div className="ml-auto flex items-center gap-x-2">
           <ActionTooltip label="Delete">
             <Trash
@@ -59,7 +82,7 @@ export const ServerWhiteChannel = ({ channel, server, role, name }) => {
           </ActionTooltip>
         </div>
       )}
-      {channel.name === "g-whiteboard" && (
+      {checkTr && (
         <Lock className="ml-auto w-4 h-4 text-zinc-500 dark:text-zinc-400" />
       )}
     </button>

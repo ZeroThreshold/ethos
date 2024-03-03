@@ -62,6 +62,7 @@ const ServerSidebar = async ({ serverId }) => {
   const codeBoard = server?.channels.filter(
     (channel) => channel.type === "CODE"
   );
+  const gptboard = server?.channels.filter((channel) => channel.type === "GPT");
   const members = server?.members.filter(
     (member) => member.profileId !== profile.id
   );
@@ -111,7 +112,7 @@ const ServerSidebar = async ({ serverId }) => {
                 <ServerWhiteChannel
                   key={board.id}
                   channel={board}
-                  role={role}
+                  role={"WHITEBOARD"}
                   server={server}
                   name={profile.name}
                 />
@@ -134,6 +135,48 @@ const ServerSidebar = async ({ serverId }) => {
                   channel={channel}
                   role={role}
                   server={server}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+        {!!codeBoard?.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectionType="channels"
+              channelType={"CODE"}
+              role={role}
+              label="CodeBoard"
+            />
+            <div className="space-y-[2px]">
+              {codeBoard.map((board) => (
+                <ServerWhiteChannel
+                  key={board.id}
+                  channel={board}
+                  role={"CODE"}
+                  server={server}
+                  name={profile.name}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+        {!!gptboard?.length && (
+          <div className="mb-2">
+            <ServerSection
+              sectionType="channels"
+              channelType={"GPT"}
+              role={role}
+              label="ChatAI"
+            />
+            <div className="space-y-[2px]">
+              {gptboard.map((board) => (
+                <ServerWhiteChannel
+                  key={board.id}
+                  channel={board}
+                  role={"GPT"}
+                  server={server}
+                  name={profile.name}
                 />
               ))}
             </div>
