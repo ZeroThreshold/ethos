@@ -4,8 +4,10 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { InitModal } from "../modals/InitModal";
 import { useState } from "react";
+import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Title } from "@radix-ui/react-dialog";
 
-const ListServersMain = ({ servers }) => {
+const ListServersMain = ({ servers, allservers }) => {
   const [modelOpen, setModelOpen] = useState(false);
 
   return (
@@ -51,6 +53,30 @@ const ListServersMain = ({ servers }) => {
                     <h2 className="font-semibold">{server.name}</h2>
                   </div>
                   <Button size="sm">View</Button>
+                </div>
+              </Link>
+            ))}
+            <Separator/> 
+            <h2 className="text-3xl font-bold">Explore Communities</h2> 
+                  {allservers.map((server) => (
+              <Link href={`/invite/${server.inviteCode}`} key={server.inviteCode}>
+                <div className="flex items-center gap-4 p-4 rounded-lg bg-gray-100 dark:bg-gray-800">
+                  <img
+                    alt="Avatar"
+                    className="rounded-full"
+                    height="40"
+                    src={server.imageUrl}
+                    style={{
+                      aspectRatio: "40/40",
+                      objectFit: "cover",
+                    }}
+                    width="40"
+                  />
+                  <div className="flex-1 grid gap-1 text-sm">
+                    <h2 className="font-semibold">{server.name}</h2>
+                    <h2  className="font-semibold">{server.description }</h2>
+                  </div>
+                  <Button size="sm">Join</Button>
                 </div>
               </Link>
             ))}

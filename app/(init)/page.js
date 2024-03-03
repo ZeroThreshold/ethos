@@ -14,8 +14,19 @@ const InitPage = async () => {
       },
     },
   });
+  const allservers = await db.server.findMany({
+    where: {
+      members: {
+        some: {
+          profileId: { 
+            not :profile.id,
+          }
+        },
+      },
+    },
+  });
 
-  return <ListServersMain servers={listofservers} />;
+  return <ListServersMain servers={listofservers} allservers={allservers} />;
 };
 
 export default InitPage;
