@@ -32,7 +32,7 @@ export function EditorComponent({ editorID, serverId, apiUrl }) {
 
   return (
     <AceEditor
-      mode="javascript"
+      mode="python"
       height="100%"
       width="100%"
       theme="monokai"
