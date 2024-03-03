@@ -3,7 +3,7 @@ const WhiteBoardPage = ({ params }) => {
   let username = params.whiteBoardId.split("_")[1];
   return (
     <iframe
-      src={`https://cloud13.de/testwhiteboard/?whiteboardid=${id}&username=${username}`}
+      src={`http://172.235.9.247:8080/?testwhiteboard/?whiteboardid=${id}&username=${username}`}
       className="w-full h-full"
     />
   );
