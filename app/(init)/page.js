@@ -18,15 +18,21 @@ const InitPage = async () => {
     where: {
       members: {
         some: {
-          profileId: { 
-            not :profile.id,
-          }
+          profileId: {
+            not: profile.id,
+          },
         },
       },
     },
   });
 
-  return <ListServersMain servers={listofservers} allservers={allservers} />;
+  return (
+    <ListServersMain
+      servers={listofservers}
+      allservers={allservers}
+      profile={profile}
+    />
+  );
 };
 
 export default InitPage;
