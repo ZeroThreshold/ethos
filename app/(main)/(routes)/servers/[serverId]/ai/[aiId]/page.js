@@ -8,8 +8,7 @@ import { ChatInput } from "@/components/chat/ChatInput";
 
 import { db } from "@/lib/database";
 
-import ReactMarkdown from 'react-markdown';
-
+import ReactMarkdown from "react-markdown";
 
 const AIIdPage = async ({ params }) => {
   const profile = await currentProfile();
@@ -68,20 +67,23 @@ const AIIdPage = async ({ params }) => {
       {aimessages.map((message) => {
         return (
           <>
-            {aimessages.map((message) => (
-              <div className="w-full px-4 py-2" key={message.id}>
-                <div className="bg-neutral-200 p-4 rounded">
-                  <div>Question: {message.question}</div>
-                  <div className={message.answer ? "text-green-700" : "text-gray-500"}>
-                    Answer: {message.answer ? (
-                      <ReactMarkdown>{message.answer}</ReactMarkdown>
-                    ) : (
-                      "Generating Response....."
-                    )}
-                  </div>
+            <div className="w-full px-4 py-2" key={message.id}>
+              <div className="bg-neutral-200 p-4 rounded">
+                <div>Question: {message.question}</div>
+                <div
+                  className={
+                    message.answer ? "text-green-700" : "text-gray-500"
+                  }
+                >
+                  Answer:{" "}
+                  {message.answer ? (
+                    <ReactMarkdown>{message.answer}</ReactMarkdown>
+                  ) : (
+                    "Generating Response....."
+                  )}
                 </div>
               </div>
-            ))}
+            </div>
           </>
         );
       })}
