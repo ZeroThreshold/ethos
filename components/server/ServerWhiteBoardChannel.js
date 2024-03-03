@@ -37,7 +37,7 @@ export const ServerWhiteChannel = ({ channel, server, role, name }) => {
       );
     }
     if (role === "CODE") {
-      router.push(`/servers/${params?.serverId}/editor/${channel.id}_${name}`);
+      router.push(`/servers/${params?.serverId}/editor/${channel.id}`);
     }
     if (role === "GPT") {
       router.push(`/servers/${params?.serverId}/ai/${channel.id}`);
@@ -74,7 +74,7 @@ export const ServerWhiteChannel = ({ channel, server, role, name }) => {
       >
         {channel.name}
       </p>
-      {checkTr && (
+      {!checkTr && (
         <div className="ml-auto flex items-center gap-x-2">
           <ActionTooltip label="Delete">
             <Trash
