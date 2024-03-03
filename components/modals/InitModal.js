@@ -33,6 +33,9 @@ const formSchema = z.object({
   description: z.string().min(1, {
     message: "Description is required",
   }),
+  category: z.string().min(1, {
+    message: "Category is required",
+  }),
 });
 
 export const InitModal = ({ isOpen = true, setModelOpen = () => {} }) => {
@@ -49,6 +52,7 @@ export const InitModal = ({ isOpen = true, setModelOpen = () => {} }) => {
     defaultValues: {
       name: "",
       description: "",
+      category:"",
     },
   });
 
@@ -118,7 +122,27 @@ export const InitModal = ({ isOpen = true, setModelOpen = () => {} }) => {
                         <Input
                           disabled={isLoading}
                           className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
-                          placeholder="Enter server name"
+                          placeholder="Enter description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                      <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                        community category
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          disabled={isLoading}
+                          className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                          placeholder="Enter category"
                           {...field}
                         />
                       </FormControl>

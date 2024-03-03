@@ -6,7 +6,7 @@ import { InitModal } from "../modals/InitModal";
 import { useState } from "react";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { Title } from "@radix-ui/react-dialog";
-
+import { Input } from "@/components/ui/input"
 const ListServersMain = ({ servers, allservers }) => {
   const [modelOpen, setModelOpen] = useState(false);
 
@@ -49,15 +49,24 @@ const ListServersMain = ({ servers, allservers }) => {
                     }}
                     width="40"
                   />
-                  <div className="flex-1 grid gap-1 text-sm">
+                  <div className="flex-1 grid gap-1 text-xl">
                     <h2 className="font-semibold">{server.name}</h2>
+                    <Separator/>
+                    <h2 className="font text-xs">{server.category}</h2>
                   </div>
                   <Button size="sm">View</Button>
                 </div>
               </Link>
             ))}
             <Separator/> 
+
+           
             <h2 className="text-3xl font-bold">Explore Communities</h2> 
+            <Separator/>
+            <div className="flex items-center space-x-2">
+      <Input type="text" className="px-3 py-2 w-80" placeholder="Search..." />
+      <Button className="px-3 py-2">Search</Button>
+    </div>
                   {allservers.map((server) => (
               <Link href={`/invite/${server.inviteCode}`} key={server.inviteCode}>
                 <div className="flex items-center gap-4 p-4 rounded-lg bg-gray-100 dark:bg-gray-800">
@@ -75,6 +84,7 @@ const ListServersMain = ({ servers, allservers }) => {
                   <div className="flex-1 grid gap-1 text-sm">
                     <h2 className="font-semibold">{server.name}</h2>
                     <h2  className="font-semibold">{server.description }</h2>
+                    <h2  className="font-semibold">{server.category }</h2>
                   </div>
                   <Button size="sm">Join</Button>
                 </div>

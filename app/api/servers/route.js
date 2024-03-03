@@ -6,7 +6,7 @@ import { Role } from "@prisma/client";
 
 export async function POST(req) {
   try {
-    const { name, description } = await req.json();
+    const { name, description,category } = await req.json();
     const profile = await currentProfile();
 
     if (!profile) {
@@ -18,6 +18,7 @@ export async function POST(req) {
         profileId: profile.id,
         name,
         description,
+        category,
         inviteCode: uuidv4(),
         imageUrl: "https://picsum.photos/200",
         channels: {
