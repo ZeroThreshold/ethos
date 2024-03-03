@@ -12,7 +12,7 @@ export function EditorComponent({ editorID, serverId, apiUrl }) {
   const roomId = editorID; // replace with your actual room ID
   const [socket, setSocket] = useState(null);
   useEffect(() => {
-    const newSocket = io("http://172.235.9.247:5000");
+    const newSocket = io("https://codeboard-socket.onrender.com/");
 
     newSocket.on("connect", () => {
       console.log("connected to socket.io server");
