@@ -5,7 +5,6 @@ import { Button } from "../ui/button";
 import { InitModal } from "../modals/InitModal";
 import { useState } from "react";
 import { Separator } from "@radix-ui/react-dropdown-menu";
-import { Title } from "@radix-ui/react-dialog";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ScrollText } from "lucide-react";

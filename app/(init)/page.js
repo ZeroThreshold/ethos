@@ -16,16 +16,12 @@ const InitPage = async () => {
   });
   const allservers = await db.server.findMany({
     where: {
-      members: {
-        some: {
-          profileId: {
-            not: profile.id,
-          },
-        },
-      },
+      NOT: [
+        { profileId: profile.id },
+        { members: { some: { profileId: profile.id } } },
+      ],
     },
   });
-
   return (
     <ListServersMain
       servers={listofservers}
