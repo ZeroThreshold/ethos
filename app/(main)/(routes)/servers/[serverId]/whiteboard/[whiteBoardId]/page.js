@@ -3,7 +3,7 @@ const WhiteBoardPage = ({ params }) => {
   let username = params.whiteBoardId.split("_")[1];
   return (
     <iframe
-      src={`https://zth-whiteboard.onrender.com/?whiteboardid=${id}&username=${username}`}
+      src={`https://cothink.onrender.com/?whiteboardid=${id}&username=${username}`}
       className="w-full h-full"
     />
   );
